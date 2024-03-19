@@ -48,9 +48,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                script {
-                    sh "kubectl apply -f app-deployment.yml"
-                }
+            bat "kubectl apply -f .\app-deployment.yml"
             }
         }
         stage('Cleaning up') {
