@@ -24,9 +24,6 @@ pipeline {
                 git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
             }
         }
-            stage('SCM') {
-                checkout scm
-            }
         stage('SonarQube Analysis') {
             def scannerHome = tool 'SonarScanner';
                 withSonarQubeEnv() {
