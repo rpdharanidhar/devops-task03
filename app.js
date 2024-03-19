@@ -2,7 +2,7 @@ const express = require('express');
 const { MongoClient } = require('mongodb');
 
 const app = express();
-const port = 3000;
+const port = 3030;
 
 const connectionString = 'mongodb://dharani:dharani@mongodb:27017';
 const dbName = 'test';
