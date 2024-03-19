@@ -2,12 +2,12 @@
 pipeline {
     agent any
     environment{
-        registry = "rpdharanidhar/devops-task02:latest"
-        DOCKER_IMAGE = "rpdharanidhar/devops-task02:latest"
+        registry = "rpdharanidhar/devops-task03:latest"
+        DOCKER_IMAGE = "rpdharanidhar/devops-task03:latest"
         KUBE_NAMESPACE = "jenkinsdemo-kube"
         DOCKER_PASSWORD = credentials('docker-password')
         DOCKER_USERNAME = credentials('docker-username')
-        DOCKER_IMAGE_NAME = "rpdharanidhar/devops-task02"
+        DOCKER_IMAGE_NAME = "rpdharanidhar/devops-task03"
         DOCKER_HUB_REPO = "rpdharanidhar"
         DOCKER_REGISTRY = "rpdharanidhar/devops-task01"
         MONGODB_SERVER = 'mongodb://localhost:27017'
@@ -20,7 +20,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git url: 'https://github.com/rpdharanidhar/devops-task02.git', branch: 'main', credentialsId: 'git-credentials'
+                git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
             }
         }
         stage('Build Docker Image') {

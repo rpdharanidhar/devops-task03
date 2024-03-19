@@ -18,7 +18,7 @@ services:
     build:  
       context: .
       dockerfile: Dockerfile
-    image: rpdharanidhar/devops-task02:latest
+    image: rpdharanidhar/devops-task03:latest
     container_name: my-nodejs-app
     ports:
       - "3000:3000"
