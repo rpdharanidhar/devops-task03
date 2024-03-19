@@ -15,7 +15,7 @@ pipeline {
         MONGODB_URL = 'mongodb://dharani:dharani@localhost:27017/admin'
         CONTAINER1_NAME = 'mongodb'
         CONTAINER2_NAME = 'nodejs'
-        sonar.projectKey='devops-task03'
+        sonar.projectKey="devops-task03"
         
     }
     
