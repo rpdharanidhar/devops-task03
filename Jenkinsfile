@@ -46,10 +46,18 @@ pipeline {
                 bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} && docker-compose push nodejs"
             }
         }
-        // stage('Cleaning up') {
-        //     steps{
-        //         bat "docker-compose down --rmi ${CONTAINER1_NAME} --rmi ${CONTAINER2_NAME}"
-        //     }
-        // }
+        stage('Deploy to Kubernetes') {
+            steps {
+                script {
+                    sh "kubectl apply -f app-deployment.yaml"
+                }
+            }
+        }
+        stage('Cleaning up') {
+            steps{
+                bat "kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
+                bat "kubectl delete deployments my-nodejs-app-task03"
+            }
+        }
     }
 }
