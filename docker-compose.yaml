@@ -3,7 +3,7 @@ version: '3.8'
 services:
   mongodb:
     image: mongo
-    container_name: my-mongodb
+    container_name: my-mongodb-task03
     ports:
       - "27017:27017"
     environment:
@@ -19,9 +19,9 @@ services:
       context: .
       dockerfile: Dockerfile
     image: rpdharanidhar/devops-task03:latest
-    container_name: my-nodejs-app
+    container_name: my-nodejs-app-task03
     ports:
-      - "3000:3000"
+      - "3030:3030"
     depends_on:
       - mongodb
     networks:
