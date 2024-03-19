@@ -15,7 +15,6 @@ pipeline {
         MONGODB_URL = 'mongodb://dharani:dharani@localhost:27017/admin'
         CONTAINER1_NAME = 'mongodb'
         CONTAINER2_NAME = 'nodejs'
-        sonar.projectKey="devops-task03"
         
     }
     
@@ -25,15 +24,13 @@ pipeline {
                 git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
             }
         }
-        node {
             stage('SCM') {
                 checkout scm
             }
-            stage('SonarQube Analysis') {
-                def scannerHome = tool 'SonarScanner';
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
                 withSonarQubeEnv() {
                     sh "${scannerHome}/bin/sonar-scanner"
-                }
             }
         }
         stage('Build Docker Image') {
