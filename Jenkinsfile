@@ -25,11 +25,12 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarScanner';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
+            steps {
+                withSonarQubeEnv('SonarQubeServer') {
+                    sh "${scannerHome}/bin/sonar-scanner"
+                }
             }
-        }   
+        }  
         stage('Build Docker Image') {
             steps {
                 bat "docker-compose build"
