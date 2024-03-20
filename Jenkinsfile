@@ -31,15 +31,10 @@ pipeline {
         //         }
         //     }
         // } 
-        node {
-            stage('SCM') {
-                git 'https://github.com/rpdharanidhar/devops-task03.git'
-            }
-            stage('SonarQube analysis') {
-                def scannerHome = tool 'SonarScanner 4.0';
-                withSonarQubeEnv('SonarQubeServer') {
-                    bat "${scannerHome}/bin/sonar-scanner"
-                }
+        stage('SonarQube analysis') {
+            def scannerHome = tool 'SonarScanner 4.0';
+            withSonarQubeEnv('SonarQubeServer') {
+                bat "${scannerHome}/bin/sonar-scanner"
             }
         }
         stage('Build Docker Image') {
