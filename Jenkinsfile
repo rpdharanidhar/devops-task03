@@ -48,7 +48,7 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-            sh "kubectl apply -f app-deployment.yml --validate=false"
+            sh "kubectl apply -f app-deployment.yaml --validate=false"
             }
         }
         stage('Cleaning up') {
