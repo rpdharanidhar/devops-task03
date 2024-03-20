@@ -31,7 +31,7 @@ pipeline {
         //         }
         //     }
         // } 
-        // 
+        
         stage('Build Docker Image') {
             steps {
                 bat "docker-compose build"
