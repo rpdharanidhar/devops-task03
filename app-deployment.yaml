@@ -13,7 +13,7 @@ spec:
         app: nodejs
     spec:
       containers:
-        - name: my-nodejs-app-task03
+        - name: nodejs
           image: rpdharanidhar/devops-task03:latest
           ports:
             - containerPort: 3000
@@ -28,10 +28,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: my-nodejs-app-task03
+  name: my-nodejs-service-app-task03
 spec:
   selector:
-    app: my-nodejs-app-task03
+    app: nodejs
   ports:
     - protocol: TCP
       port: 80
