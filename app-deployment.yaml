@@ -16,7 +16,7 @@ spec:
         - name: my-nodejs-app-task03
           image: rpdharanidhar/devops-task03:latest
           ports:
-            - containerPort: 3030
+            - containerPort: 3000
           env:
             - name: MONGO_INITDB_ROOT_USERNAME
               value: dharani
@@ -35,7 +35,7 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 3030
+      targetPort: 3000
   type: LoadBalancer
 ---
 apiVersion: v1
