@@ -24,14 +24,24 @@ pipeline {
                 git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
             }
         }
-        stage('SonarQube Analysis') {
-            steps {
+        // stage('SonarQube Analysis') {
+        //     steps {
+        //         withSonarQubeEnv('SonarQubeServer') {
+        //             sh "${scannerHome}/bin/sonar-scanner"
+        //         }
+        //     }
+        // } 
+        node {
+            stage('SCM') {
+                git 'https://github.com/rpdharanidhar/devops-task03.git'
+            }
+            stage('SonarQube analysis') {
+                def scannerHome = tool 'SonarScanner 4.0';
                 withSonarQubeEnv('SonarQubeServer') {
-                    sh "${scannerHome}/bin/sonar-scanner"
+                    bat "${scannerHome}/bin/sonar-scanner"
                 }
             }
-        } 
-        
+        }
         stage('Build Docker Image') {
             steps {
                 bat "docker-compose build"
