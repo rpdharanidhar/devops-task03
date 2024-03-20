@@ -48,7 +48,16 @@ pipeline {
         }
         stage('Deploy to Kubernetes') {
             steps {
-                bat "start /B kubectl apply -f app-deployment.yaml --validate=false"
+                script {
+                    try {
+                        bat "start /B kubectl apply -f app-deployment.yaml --validate=false"
+                    } catch (Exception e) {
+                        echo "Deployment failed! Rolling back..."
+                        bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
+                        bat "start /B kubectl delete deployments my-nodejs-app-task03"
+                        echo "Rollback completed. Deployment failed."
+                    }
+                }
             }
         }
         stage('Cleaning up') {
