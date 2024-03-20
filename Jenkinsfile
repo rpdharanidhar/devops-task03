@@ -53,8 +53,8 @@ pipeline {
         }
         stage('Cleaning up') {
             steps{
-                bat "kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
-                bat "kubectl delete deployments my-nodejs-app-task03"
+                bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
+                bat "start /B kubectl delete deployments my-nodejs-app-task03"
             }
         }
     }
