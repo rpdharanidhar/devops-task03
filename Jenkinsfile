@@ -55,6 +55,7 @@ pipeline {
             steps{
                 bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
                 bat "start /B kubectl delete deployments my-nodejs-app-task03"
+                sh "kubectl delete deployments my-nodejs-app-task03"
             }
         }
     }
