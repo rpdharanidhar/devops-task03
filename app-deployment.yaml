@@ -6,11 +6,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: my-nodejs-app-task03
+      app: nodejs
   template:
     metadata:
       labels:
-        app: my-nodejs-app-task03
+        app: nodejs
     spec:
       containers:
         - name: my-nodejs-app-task03
@@ -49,4 +49,9 @@ spec:
     - protocol: TCP
       port: 27017
       targetPort: 27017
+  env:
+    - name: MONGO_INITDB_ROOT_USERNAME
+      value: dharani
+    - name: MONGO_INITDB_ROOT_PASSWORD
+      value: dharani
   type: ClusterIP
