@@ -17,7 +17,7 @@ pipeline {
         CONTAINER2_NAME = 'nodejs'
         SCANNER_HOME = tool 'sonarqube-scanner'
         SONAR_PASSWORD = credentials('sonar-password')
-        SONAR_LOGIN = credentials('sonar-login')
+        SONAR_LOGIN = credentialsId('sonar-login')
         
     }
     stages {
@@ -36,10 +36,9 @@ pipeline {
                             }
                             waitForQualityGate()
                         }
-                    } 
-                    // catch (Exception e) {
-                    //     echo "SonarQube stage has been failed...!!! better luck next time !!!."
-                    // }
+                    } catch (Exception e) {
+                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    }
                 }
             }
         }
