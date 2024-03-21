@@ -17,6 +17,18 @@ pipeline {
         CONTAINER2_NAME = 'nodejs'
         
     }
+
+    node {
+        stage('SCM') {
+            git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
+        }
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner';
+            withSonarQubeEnv() {
+            sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
+    }
     
     stages {
         stage('Checkout') {
