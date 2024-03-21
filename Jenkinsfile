@@ -18,7 +18,7 @@ pipeline {
         SCANNER_HOME = tool 'sonarqube-scanner'
         SONAR_LOGIN = credentials('sonar-login')
         SONAR_PASSWORD = credentials('sonar-password')
-        SONAR_CREDENTIAL = credentials('sonar-login')
+        SONAR_LOGIN = credentials('sonar-login')
         
     }
     stages {
