@@ -26,9 +26,9 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'sonarscanner-jenkins-docker';
+                    def scannerHome = tool 'sonarqube-scanner';
                     withSonarQubeEnv() {
-                        sh "${scannerHome}/bin/sonar-scanner"
+                        bat "${scannerHome}/bin/sonar-scanner"
                     }
                     waitForQualityGate()
                 }
