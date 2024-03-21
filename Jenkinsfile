@@ -38,6 +38,7 @@ pipeline {
                         }
                     } catch (Exception e) {
                         echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    }
                 }
             }
         }
