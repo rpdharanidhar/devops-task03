@@ -17,23 +17,6 @@ pipeline {
         CONTAINER2_NAME = 'nodejs'
         
     }
-
-    node {
-        stage('SCM') {
-            git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
-        }
-        stage('SonarQube Analysis') {
-            def scannerHome = tool 'sonarscanner-jenkins-docker';
-            withSonarQubeEnv() {
-            sh "${scannerHome}/bin/sonar-scanner"
-            }
-        }
-    }
-    // 
-    // 
-    // 
-    // 
-    // 
     stages {
         stage('Checkout') {
             steps {
@@ -41,9 +24,14 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            def scannerHome = tool 'sonarscanner-jenkins-docker';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
+            steps {
+                script {
+                    def scannerHome = tool 'sonarscanner-jenkins-docker';
+                    withSonarQubeEnv() {
+                        sh "${scannerHome}/bin/sonar-scanner"
+                    }
+                    waitForQualityGate()
+                }
             }
         }
         stage('Build Docker Image') {
