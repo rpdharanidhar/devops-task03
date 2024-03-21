@@ -23,7 +23,7 @@ pipeline {
             git url: 'https://github.com/rpdharanidhar/devops-task03.git', branch: 'main', credentialsId: 'git-credentials'
         }
         stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarScanner';
+            def scannerHome = tool 'sonarscanner-jenkins-docker';
             withSonarQubeEnv() {
             sh "${scannerHome}/bin/sonar-scanner"
             }
