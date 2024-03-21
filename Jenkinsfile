@@ -28,13 +28,11 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]){
-                        withSonarQubeEnv() {
-                            bat "${scannerHome}/bin/sonar-scanner"
-                        }
-                        waitForQualityGate()
+                withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]){
+                    withSonarQubeEnv() {
+                        bat "${scannerHome}/bin/sonar-scanner"
                     }
+                waitForQualityGate()
                 }
             }
         }
