@@ -36,9 +36,10 @@ pipeline {
                             }
                             waitForQualityGate()
                         }
-                    } catch (Exception e) {
-                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
-                    }
+                    } 
+                    // catch (Exception e) {
+                    //     echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    // }
                 }
             }
         }
