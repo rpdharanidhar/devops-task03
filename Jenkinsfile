@@ -16,7 +16,6 @@ pipeline {
         CONTAINER1_NAME = 'mongodb'
         CONTAINER2_NAME = 'nodejs'
         SCANNER_HOME = tool 'sonarqube-scanner'
-        SONAR_LOGIN = credentials('sonar-login')
         SONAR_PASSWORD = credentials('sonar-password')
         SONAR_LOGIN = credentials('sonar-login')
         
