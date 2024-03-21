@@ -15,6 +15,7 @@ pipeline {
         MONGODB_URL = 'mongodb://dharani:dharani@localhost:27017/admin'
         CONTAINER1_NAME = 'mongodb'
         CONTAINER2_NAME = 'nodejs'
+        SCANNER_HOME = tool 'sonarqube-scanner'
         
     }
     stages {
@@ -26,11 +27,12 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    def scannerHome = tool 'sonarqube-scanner';
-                    withSonarQubeEnv() {
-                        bat "${scannerHome}/bin/sonar-scanner"
+                    withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]){
+                        withSonarQubeEnv() {
+                            bat "${scannerHome}/bin/sonar-scanner"
+                        }
+                        waitForQualityGate()
                     }
-                    waitForQualityGate()
                 }
             }
         }
