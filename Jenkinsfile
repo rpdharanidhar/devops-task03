@@ -29,7 +29,7 @@ pipeline {
         stage('SonarQube Analysis') {
             steps {
                 script {
-                    // try {
+                    try {
                         withSonarQubeEnv() {
                             bat "${scannerHome}/bin/sonar-scanner -Dsonar.login=admin -Dsonar.password=dharani"
                         }
