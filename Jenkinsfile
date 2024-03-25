@@ -36,7 +36,7 @@ pipeline {
                             bat "${scannerHome}/bin/sonar-scanner"
                         }
                     } catch (Exception e) {
-                    echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
                     }
                     // withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
                     //     withSonarQubeEnv() {
