@@ -77,15 +77,17 @@ pipeline {
             }
         }
     }
-    success {
-        echo "Pipeline completed successfully!"
-    }
-    failure {
-        script {
-            echo "Deployment failed! Rolling back..."
-            bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
-            bat "start /B kubectl delete deployments my-nodejs-app-task03"
-            echo "Rollback completed. Deployment failed."
+    post {
+        success {
+            echo "Pipeline completed successfully!"
+        }
+        failure {
+            script {
+                echo "Deployment failed! Rolling back..."
+                bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
+                bat "start /B kubectl delete deployments my-nodejs-app-task03"
+                echo "Rollback completed. Deployment failed."
+            }
         }
     }
 }
