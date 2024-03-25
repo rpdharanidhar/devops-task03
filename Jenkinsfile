@@ -28,8 +28,8 @@ pipeline {
             }
         }
         stage('SonarQube Analysis') {
-            steps {
-                try {
+            try {
+                steps {
                     script {
                         def scannerHome = tool 'sonarqube-scanner';
                         withSonarQubeEnv() {
