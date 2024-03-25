@@ -16,8 +16,8 @@ pipeline {
         CONTAINER1_NAME = 'mongodb'
         CONTAINER2_NAME = 'nodejs'
         SCANNER_HOME = tool 'sonarqube-scanner'
-        SONAR_PASSWORD = credentials('sonar-password')
-        SONAR_LOGIN = credentials('sonar-login')
+        SONAR_PASSWORD = "dharani"
+        SONAR_LOGIN = "admin"
         SONAR_TOKEN = "sqp_9af532b5aa5d98d3ba1822e5a274855aec466755"
         
     }
@@ -33,7 +33,7 @@ pipeline {
                     try {
                         def scannerHome = tool 'sonarqube-scanner';
                         withSonarQubeEnv() {
-                            bat "${scannerHome}/bin/sonar-scanner"
+                            bat "${scannerHome}/bin/sonar-scanner -Dsonar.login=${env.SONAR_LOGIN} -Dsonar.password=${env.SONAR_PASSWORD}"
                         }
                     } catch (Exception e) {
                         echo "SonarQube stage has been failed...!!! better luck next time !!!."
