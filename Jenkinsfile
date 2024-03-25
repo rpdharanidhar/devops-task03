@@ -70,14 +70,15 @@ pipeline {
                 }
             }
         }
-        stage('Cleaning up') {
-            steps{
+    }
+    post {
+        always {
+            echo "Cleaning up"
+            script{
                 bat "start /B kubectl delete service my-mongodb-task03, my-nodejs-app-task03"
                 bat "start /B kubectl delete deployments my-nodejs-app-task03"
             }
         }
-    }
-    post {
         success {
             echo "Pipeline completed successfully!"
         }
