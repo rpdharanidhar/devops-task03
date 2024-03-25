@@ -29,20 +29,14 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                script {
-                    try {
-                        stage('SonarQube Analysis') {
-                            steps {
-                                script {
-                                    def scannerHome = tool 'sonarqube-scanner';
-                                    withSonarQubeEnv() {
-                                        bat "${scannerHome}/bin/sonar-scanner"
-                                    }
-                                }
-                            }
+                try {
+                    script {
+                        def scannerHome = tool 'sonarqube-scanner';
+                        withSonarQubeEnv() {
+                            bat "${scannerHome}/bin/sonar-scanner"
                         }
                     } catch (Exception e) {
-                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    echo "SonarQube stage has been failed...!!! better luck next time !!!."
                     }
                     // withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
                     //     withSonarQubeEnv() {
