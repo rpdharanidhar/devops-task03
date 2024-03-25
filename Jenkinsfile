@@ -37,14 +37,8 @@ pipeline {
                         }
                     } 
                 } catch (Exception e) {
-                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
-                    }
-                    // withCredentials([usernamePassword(credentialsId: 'sonar-login', usernameVariable: 'SONAR_LOGIN', passwordVariable: 'SONAR_PASSWORD')]) {
-                    //     withSonarQubeEnv() {
-                    //         bat """${scannerHome}\\bin\\sonar-scanner -Dsonar.login=%SONAR_LOGIN% -Dsonar.password=%SONAR_PASSWORD%"""
-                    //     }
-                    //     waitForQualityGate()
-                    // }
+                    echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                }
             }
         }
         stage('Build Docker Image') {
