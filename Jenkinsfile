@@ -53,7 +53,7 @@ pipeline {
         }
         stage('Push Docker Image to Hub') {
             steps {
-                bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} && docker-compose push rpdharanidhar/devops-task03:latest"
+                bat "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD} && docker-compose push nodejs"
             }
         }
         stage('Deploy to Kubernetes') {
