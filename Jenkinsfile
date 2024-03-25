@@ -21,17 +21,6 @@ pipeline {
         SONAR_TOKEN = "sqp_9af532b5aa5d98d3ba1822e5a274855aec466755"
         
     }
-    node {
-        stage('SCM') {
-            checkout scm
-        }
-        stage('SonarQube Analysis') {
-            def scannerHome = tool 'SonarScanner';
-            withSonarQubeEnv() {
-                sh "${scannerHome}/bin/sonar-scanner"
-            }
-        }
-    }
     stages {
         stage('Checkout') {
             steps {
@@ -47,7 +36,7 @@ pipeline {
                                 script {
                                     def scannerHome = tool 'sonarqube-scanner';
                                     withSonarQubeEnv() {
-                                        sh "${scannerHome}/bin/sonar-scanner"
+                                        bat "${scannerHome}/bin/sonar-scanner"
                                     }
                                 }
                             }
