@@ -29,15 +29,15 @@ pipeline {
         }
         stage('SonarQube Analysis') {
             steps {
-                try {
-                    script {
+                script {
+                    try {
                         def scannerHome = tool 'sonarqube-scanner';
                         withSonarQubeEnv() {
                             bat "${scannerHome}/bin/sonar-scanner"
                         }
-                    } 
-                } catch (Exception e) {
-                    echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    } catch (Exception e) {
+                        echo "SonarQube stage has been failed...!!! better luck next time !!!."
+                    }
                 }
             }
         }
