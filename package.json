@@ -4,7 +4,7 @@
   "description": "this is a testdemo page for the deployment",
   "main": "app.js",
   "dependencies": {
-    "express": "^4.18.3",
+    "express": "^4.19.2",
     "kompose": "^0.0.1-alpha.1",
     "mongodb": "^4.17.2",
     "mongoose": "^8.2.2"
